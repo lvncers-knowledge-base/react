@@ -6,6 +6,7 @@ Reactをまったく知らない人に「全体像」を教えるなら、地図
 
 React全体像マップ（完全版）
 
+```
 React
 ├─ 1. 基礎概念（絶対コア）
 │  ├─ コンポーネント
@@ -114,7 +115,7 @@ React
    ├─ Concurrent Rendering
    ├─ Hydration
    └─ Streaming SSR
-
+```
 
 ---
 
