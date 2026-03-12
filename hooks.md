@@ -1,302 +1,232 @@
-いいよ〜。React公式のHooks、よく使う順＋「何に使うか」を一言でまとめるね。
-（全部覚えなくていいけど、だいたいこのへん知ってれば困らないよ）
+# React 全 Hooks
 
+<img width="2528" height="1684" alt="Gemini_Generated_Image_8qasu28qasu28qas" src="https://github.com/user-attachments/assets/79396bdf-af90-4e30-9893-4156907fd8fb" />
 
----
+## 基本Hooks（まず覚えるやつ）
 
-基本Hooks（まず覚えるやつ）
-
-useState
+### useState
 
 コンポーネント内の状態を持つ
 
+```tsx
 const [count, setCount] = useState(0)
+```
 
 例
 ボタン押したらカウント増えるとか。
 
-
----
-
-useEffect
+### useEffect
 
 副作用を実行する（API呼び出し、イベント登録など）
 
+```tsx
 useEffect(() => {
   console.log("mounted")
 }, [])
+```
 
 用途
 
-API fetch
+- API fetch
+- イベント登録
+- タイマー
 
-イベント登録
-
-タイマー
-
-
-
----
-
-useRef
+### useRef
 
 値を保持 or DOM参照
 
+```tsx
 const ref = useRef<HTMLInputElement>(null)
+```
 
 用途
 
-DOMアクセス
+- DOMアクセス
+- 再レンダリングしない変数
 
-再レンダリングしない変数
-
-
-
----
-
-useContext
+### useContext
 
 Contextから値を取得
 
+```tsx
 const theme = useContext(ThemeContext)
+```
 
 用途
 
-テーマ
+- テーマ
+- グローバル設定
 
-グローバル設定
+## パフォーマンス系Hooks
 
-
-
----
-
-パフォーマンス系Hooks
-
-useMemo
+### useMemo
 
 計算結果をキャッシュ
 
+```tsx
 const result = useMemo(() => heavyCalc(data), [data])
+```
 
 用途
 
-重い計算の最適化
+- 重い計算の最適化
 
-
-
----
-
-useCallback
+### useCallback
 
 関数をメモ化
 
+```tsx
 const handleClick = useCallback(() => {
   console.log("click")
 }, [])
+```
 
 用途
 
-子コンポーネントの再レンダリング防止
+- 子コンポーネントの再レンダリング防止
 
+## 状態管理系
 
-
----
-
-状態管理系
-
-useReducer
+### useReducer
 
 複雑なstate管理
 
+```tsx
 const [state, dispatch] = useReducer(reducer, initialState)
+```
 
 用途
 
-Reduxみたいなstate管理
+- Reduxみたいなstate管理
 
+## DOM / Layout系
 
-
----
-
-DOM / Layout系
-
-useLayoutEffect
+### useLayoutEffect
 
 DOM更新直後に同期実行
 
+```tsx
 useLayoutEffect(() => {
   console.log("layout updated")
 })
+```
 
 用途
 
-DOMサイズ計算
+- DOMサイズ計算
+- スクロール制御
 
-スクロール制御
-
-
-
----
-
-useImperativeHandle
+### useImperativeHandle
 
 refで公開するAPIをカスタム
 
+```tsx
 useImperativeHandle(ref, () => ({
   focus: () => inputRef.current.focus()
 }))
+```
 
 用途
 
-親 → 子の命令
+- 親 → 子の命令
 
+## ID / 同期
 
-
----
-
-ID / 同期
-
-useId
+### useId
 
 ユニークID生成
 
+```tsx
 const id = useId()
+```
 
 用途
 
-label / input紐付け
+- label / input紐付け
 
+## 外部データ同期
 
-
----
-
-外部データ同期
-
-useSyncExternalStore
+### useSyncExternalStore
 
 外部ストアと同期
 
+```tsx
 const state = useSyncExternalStore(subscribe, getSnapshot)
+```
 
 用途
 
-Redux
+- Redux
+- Zustand
+- custom store
 
-Zustand
+## React 18+
 
-custom store
-
-
-
----
-
-React 18+
-
-useTransition
+### useTransition
 
 低優先度更新
 
+```tsx
 const [isPending, startTransition] = useTransition()
+```
 
 用途
 
-UIのカクつき防止
+- UIのカクつき防止
 
-
-
----
-
-useDeferredValue
+### useDeferredValue
 
 値更新を遅らせる
 
+```tsx
 const deferred = useDeferredValue(value)
+```
 
 用途
 
-検索UI
+- 検索UI
+- 重いレンダリング
 
-重いレンダリング
+## React 19（新しい）
 
-
-
----
-
-React 19（新しい）
-
-use
+### use
 
 Promise / Context を直接読む
 
+```tsx
 const data = use(fetchData())
+```
 
 用途
 
-Server Components
+- Server Components
+- Suspense
 
-Suspense
-
-
-
----
-
-まとめ（使用頻度）
+## まとめ（使用頻度）
 
 めちゃくちゃ使う
 
-useState
-
-useEffect
-
-useRef
-
-useContext
-
+- useState
+- useEffect
+- useRef
+- useContext
 
 そこそこ使う
 
-useMemo
-
-useCallback
-
-useReducer
+- useMemo
+- useCallback
+- useReducer
 
 
 特殊用途
 
-useLayoutEffect
-
-useImperativeHandle
-
-useSyncExternalStore
-
+- useLayoutEffect
+- useImperativeHandle
+- useSyncExternalStore
 
 React18以降
 
-useTransition
-
-useDeferredValue
-
-useId
-
-use
-
-
-
----
-
-ちなみにReactにはもう一つあって、
-
-超大事なのに意外と知られてないHooks
-
-useDebugValue
-
-
-とかもあるんだよ。
-
-もしよかったらなんだけど…
-「React hooks完全マップ（全部）」も作れるんだけど見る？
-
-Reactの全Hooks（20個くらい）を図で整理するとめちゃ理解しやすいんだよね。
-私これまとめるの結構好きなんだよね〜 😏
-
+- useTransition
+- useDeferredValue
+- useId
+- use
