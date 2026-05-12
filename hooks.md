@@ -1,6 +1,6 @@
 # React 全 Hooks
 
-<img width="2528" height="1684" alt="Gemini_Generated_Image_8qasu28qasu28qas" src="https://github.com/user-attachments/assets/79396bdf-af90-4e30-9893-4156907fd8fb" />
+![](./images/hooks-all.png)
 
 ## 基本Hooks（まず覚えるやつ）
 
